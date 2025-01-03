@@ -1,19 +1,24 @@
-function ex04(){
-    let lettres =[];
-    const footertags = document.getElementsByTagName("footer")[0].getElementsByTagName("div")[0];
-    function updateDisplay(){
-        footertags.textContent = lettres.join('');
-    };
-    document.addEventListener('keypress' , (event) => {
-        lettres.push(event.key);
-        if (lettres.length > 42) {
-            lettres.shift();
+function ex04() {
+    let caracteresSaisis = "";
+
+    const boiteBlanche = document.querySelector("footer > div");
+
+    if (!boiteBlanche) {
+        console.error("boîte blanche pas trouvée");
+        return;
+    }
+
+    document.addEventListener("keydown", function (evenement) {
+        caracteresSaisis += evenement.key;
+
+        if (caracteresSaisis.length > 42) {
+            caracteresSaisis = caracteresSaisis.slice(-42);
         }
-    updateDisplay();
-    })
+
+        boiteBlanche.textContent = caracteresSaisis;
+    });
 }
 
-
-window.onload = (e) => {
+window.onload = () => {
     ex04();
-}
+};

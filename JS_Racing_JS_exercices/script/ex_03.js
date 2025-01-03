@@ -1,16 +1,32 @@
-function ex03(){
-    document.addEventListener("DOMContentLoaded", function() {
-    const whiteBox = document.getElementsByTagName("footer")[0].getElementsByTagName("div")[0];
-    whitebox.addEventListener("click", function() { 
-        let name = "";
-        while (name != ""){
-        name = prompt("What is your name?");
+function ex03() {
+    const boiteBlanche = document.querySelector("footer > div");
+
+
+     if (!boiteBlanche) {
+        console.error("boîte blanche pas trouvée ");
+        return;
+    }
+
+    boiteBlanche.addEventListener("click", function () {
+        let nom = "";
+
+        while (!nom) {
+            nom = prompt("Quel est votre nom ?");
+
+
+            if (nom === null) {
+                return;
+            }
         }
-        const footertags = document.getElementsByTagName("footer")[0];
-        footertags.getElementsByTagName("div")[0].innerHTML = name;
-    })
-    );
-}
-window.onload = (e) => {
+
+        const confirmation = confirm(`Êtes-vous sûr que ${nom} est votre nom ?`);
+
+        if (confirmation) {
+            boiteBlanche.textContent = `Bonjour ${nom} !`;
+            alert(`Bonjour ${nom} !`);
+            }
+        });
+    };
+window.onload = () => {
     ex03();
-}
+};
